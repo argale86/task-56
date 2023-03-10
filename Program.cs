@@ -1,4 +1,4 @@
-﻿//Найти номер строки с наибольшей суммой элементов
+﻿//Найти номер строки с наименьшей суммой элементов
 Console.WriteLine("Введите кол-во элементов по горизонтали в массиве:");
 int m = Convert.ToInt32(Console.ReadLine());
 Console.WriteLine("Введите кол-во элементов по вертикали в массиве:");
@@ -9,7 +9,7 @@ for (int count1 = 0; count1 < m; count1++)
 {
     for (int count2 = 0; count2 < n; count2++)
     {
-        mas[count1,count2] = rnd.Next(-15, 15);
+        mas[count1,count2] = rnd.Next(0, 25);
         Console.Write(" " + mas[count1,count2] + " ");
     }
     Console.WriteLine();
@@ -17,7 +17,7 @@ for (int count1 = 0; count1 < m; count1++)
 
 int m1 = mas.GetUpperBound(0) + 1;
 int n1 = mas.Length / m1;
-int max = 0;
+int min = 0;
 int sum = 0;
 int buf = 0;
 for (int count3 = 0; count3 < m1; count3++)
@@ -28,12 +28,20 @@ for (int count3 = 0; count3 < m1; count3++)
         //Console.WriteLine("count4 = " + count4);
         sum = sum + mas [count3,count4];
     }
-    if (sum > max)
+    if (count3 == 0)
     {
-        max = sum;
+        min = sum;
         buf = count3;
+    }
+    else
+    {
+        if (sum < min)
+        {
+            min = sum;
+            buf = count3;
+        }
     }
     sum = 0;
 }
-Console.WriteLine("Наибольшая сумма = " + max);
-Console.WriteLine("Номер строки с наибольшей суммой = " + buf);
+Console.WriteLine("Наименьшая сумма = " + min);
+Console.WriteLine("Номер строки с наименьшей суммой = " + buf);
